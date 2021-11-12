@@ -68,15 +68,24 @@ def rotation(p):
                 p.append(current_process)
                 current_process = p.pop()
 
+def leerData():
+    data = []
+    with open("data.txt","r") as archivo:
+        for linea in archivo:
+            dt = linea.split(" ")
+            data.append(Process(int(dt[0]), int(dt[1])))
+    return data
+
 def main():
     method = input("\n >>> Algoritmo de programación de procesos. \nA. Algoritmo de prioridad \tB. Algoritmo de round robin \n>: ")
-    p = [Process(random.randrange(97,100), random.randrange(1, 21)) for i in range(random.randrange(4, 9))]
+    #p = [Process(random.randrange(97,100), random.randrange(1, 21)) for i in range(random.randrange(4, 9))]
+    p = leerData()
     if method == 'A':
         priority(p)
     elif method == 'B':
         rotation(p)
     else:
-        print('\ n [ERROR]: Error de entrada')
+        print('\n [ERROR]: Error de entrada')
     print()
 
 if __name__ == '__main__':
